@@ -1,0 +1,5 @@
+query allUsers( $count: Int ) {
+  allUsers( count: $count ) {
+    ...userFragment
+  }
+}
