@@ -1,7 +1,23 @@
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+const httpLink = createHttpLink({
+  uri: 'https://fakerql.com/graphql'
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  headers.authorization = token ? `Bearer ${token}` : "" 
+  return  { headers }
+});
 
 const client = new ApolloClient({
-  uri: 'https://fakerql.com/graphql'
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
 });
 
 export default client;
