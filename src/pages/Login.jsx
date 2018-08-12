@@ -8,21 +8,33 @@ class Login extends Component {
       email: '',
       password: ''
     }
+
+    this.handleChangeEmail = this.handleChangeEmail.bind(this)
+    this.handleChangePassword = this.handleChangePassword.bind(this)
   }
   
 
-  handleChange(e){
-    console.log( e.target.name, e.target.value);
+  handleChangeEmail(e){
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  handleChangePassword(e){
+    this.setState({
+      password: e.target.value
+    })
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <h1>Login</h1>
 
         <form>
-          <input type="email" name="email" onChange={this.handleChange} />
-          <input type="password" name="password" onChange={this.handleChange} />
+          <input type="email" name="email" onChange={this.handleChangeEmail} />
+          <input type="password" name="password" onChange={this.handleChangePassword} />
 
         </form>
         
