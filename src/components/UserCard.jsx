@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
-class UserCard extends PureComponent {
+class UserCard extends React.Component {
   render() {
     const { user } = this.props;
 

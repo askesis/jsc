@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import UserCard from './UserCard';
 import Button from './common/Button';
 
-class UsersList extends Component {
+class UsersList extends React.Component {
   constructor(props) {
     super(props);
     
@@ -26,7 +26,7 @@ class UsersList extends Component {
 
   setUsers(users) {
     const temp = [ ...this.state.users, ...users ]
-    this.setState({ users: temp })
+    this.setState({ users })
   }
   
   render() {

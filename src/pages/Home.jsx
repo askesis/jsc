@@ -19,7 +19,7 @@ class Home extends Component {
             if (error) console.log(error);
             if (loading) return <p>Loading... </p>
             console.log(data);
-            return <UsersList users={allUsers} refetch={refetch} />
+            return <UsersList users={data.allUsers} refetch={refetch} />
           }}
         </Query>
       </React.Fragment>
