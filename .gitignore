@@ -1,4 +1,11 @@
-/node_modules
-/dist
+.vscode/
 
-/.cache
+.cache/
+
+dist/
+
+node_modules/
+
+package-lock.json
+
+yarn.lock
