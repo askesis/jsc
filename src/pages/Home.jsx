@@ -3,6 +3,8 @@ import { Query } from 'react-apollo';
 import { concatAST } from 'graphql'
 
 import ME from '../graphql/queries/me';
+import USERS from '../graphql/queries/users'
+import USER_FRAGMENT from '../graphql/fragments/user';
 
 import UsersList from '../components/UsersList';
 
@@ -12,13 +14,12 @@ class Home extends Component {
       <React.Fragment>
         <h1>JSC</h1>
 
-        <Query query={ME} >
+        <Query query={concatAST([USERS, USER_FRAGMENT])} >
           { ({ error, loading, data, refetch }) => {
             if (error) console.log(error);
             if (loading) return <p>Loading... </p>
             console.log(data);
-            return <div></div>
-            // return <UsersList users={allUsers} refetch={refetch} />
+            return <UsersList users={allUsers} refetch={refetch} />
           }}
         </Query>
       </React.Fragment>
