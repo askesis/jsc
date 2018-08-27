@@ -11,17 +11,17 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-      <Router>
-      <Main>
-          <Switch>
+        <Router>
+          <Main>
+            <Switch>
 
-            <Route path="/home" component={Home}/>
-            <Route path="/login" component={Login}/>
+              <Route path="/home" component={Home}/>
+              <Route path="/login" component={Login}/>
 
-          </Switch>
+            </Switch>
           </Main>
-        </Router>
-        
+          </Router>
+          
       </ApolloProvider>
     );
   }
