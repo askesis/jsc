@@ -2,22 +2,36 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import { concatAST } from 'graphql'
 
-import ALL_USERS_QUERY from '../graphql/queries/users';
+import BOOKS_QUERY from '../graphql/books';
+import ME from '../graphql/queries/me';
+import USERS from '../graphql/queries/users'
 import USER_FRAGMENT from '../graphql/fragments/user';
+
+import UsersList from '../components/UsersList';
 
 class Home extends Component {
   render() {
     return (
       <React.Fragment>
         <h1>JSC</h1>
-        <Query query={concatAST([ ALL_USERS_QUERY, USER_FRAGMENT ])} >
-          { ({ error, loading, data: { allUsers } }) => {
 
+      <Query query={BOOKS_QUERY}>
+        {({ error, loading, data }) => {
+          if ( error ) {console.error(error);return;}
+
+          if ( loading ) return <p>Loading...</p>
+          
+          return data.books.map( book => <div key={book.id}>{book.title} {book.author.firstName} {book.author.firstName}</div>)
+        }}
+      </Query>
+        {/*<Query query={concatAST([USERS, USER_FRAGMENT])} >
+          { ({ error, loading, data, refetch }) => {
+            if (error) console.log(error);
             if (loading) return <p>Loading... </p>
-
-            return allUsers.map( u => <p key={u.id}>{u.id} {u.firstName} {u.lastName}</p>)
+            console.log(data);
+            return <UsersList users={data.allUsers} refetch={refetch} />
           }}
-        </Query>
+        </Query>*/}
       </React.Fragment>
     );
   }
